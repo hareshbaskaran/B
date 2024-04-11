@@ -30,12 +30,15 @@ def transformacao(file: Image.Image):
     result = decode_predictions(model.predict(x), 3)[0]
 
     response = []
+    txt = ''
     for i, res in enumerate(result):
         resp = {}
         resp["class"] = res[1]
         resp["confidence"] = f"{res[2] * 100:0.2f} %"
+        txt = txt + 'a ' + resp["class"] + 'and we are confident on the result by ' + resp["confidence"] + '.'
 
         response.append(resp)
 
-    return response
+    # return response
+    return txt
 # Predicted: [(u'n02504013', u'Indian_elephant', 0.82658225), (u'n01871265', u'tusker', 0.1122357), (u'n02504458', u'African_elephant', 0.061040461)]
