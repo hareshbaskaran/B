@@ -1,11 +1,8 @@
-from PIL import Image
 from predict import read_image
 from predict import transformacao
-from fastapi import FastAPI, File, UploadFile
-from io import BytesIO
+from fastapi import FastAPI, File
 
 app = FastAPI()
-
 
 
 @app.post("/files/")
@@ -17,7 +14,7 @@ async def create_file(file: bytes = File(...)):
 async def create_upload_file(file: bytes = File(...)):
     # read image
     imagem = read_image(file)
-    # transform and prediction 
+    # transform and prediction
     prediction = transformacao(imagem)
 
     return prediction
