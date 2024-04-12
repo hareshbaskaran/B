@@ -30,12 +30,11 @@ def transformacao(file: Image.Image):
     result = decode_predictions(model.predict(x), 3)[0]
 
     response = []
-    txt = ''
+    txt = 'can be '
     for i, res in enumerate(result):
         resp = {}
         resp["class"] = res[1]
-        resp["confidence"] = f"{res[2] * 100:0.2f} %"
-        txt = txt + 'a ' + resp["class"] + 'and we are confident on the result by ' + resp["confidence"] + '.'
+        txt = txt + 'a ' + resp["class"] + ' , '
 
         response.append(resp)
 
